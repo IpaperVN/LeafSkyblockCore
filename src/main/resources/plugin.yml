@@ -1,0 +1,11 @@
+name: LeafSkyblockCore
+version: '1.0'
+main: me.ipapervn.leafskyblockcore.LeafSkyblockCore
+api-version: '1.21'
+authors: [ipapervn]
+softdepend: [SuperiorSkyblock2, PlaceholderAPI]
+commands:
+  leafskyblockcore:
+    description: Main command for LeafSkyblockCore
+    aliases: [lc, leafcore, leaf]
+    usage: /<command> [args]

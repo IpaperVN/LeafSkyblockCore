@@ -1,0 +1,27 @@
+# Messages Configuration
+# Supports MiniMessage format: https://docs.advntr.dev/minimessage/format.html
+# Placeholders: {placeholder_name}
+
+general:
+  no-permission: "<red>You don't have permission to use this command!"
+  player-only: "<red>This command is for players only!"
+  player-not-found: "<red>Player not found!"
+  invalid-number: "<red>Invalid number!"
+  unknown-command: "<red>Unknown command: {command}"
+
+crops-tracker:
+  your-points: "<green>Your crops points: <yellow>{points}"
+  player-points: "<green>{player}'s crops points: <yellow>{points}"
+  set-points: "<green>Set {player}'s points to <yellow>{points}"
+  add-points: "<green>Added <yellow>{points}</yellow> points to {player}"
+  reset-points: "<green>Reset {player}'s points"
+  reloaded: "<green>Crops tracker reloaded!"
+
+command-blocker:
+  blocked: "<red>You don't have permission to use /{command}!"
+
+usage:
+  crops-tracker-check: "<red>Usage: /lc cropstracker check <player>"
+  crops-tracker-set: "<red>Usage: /lc cropstracker set <player> <points>"
+  crops-tracker-add: "<red>Usage: /lc cropstracker add <player> <points>"
+  crops-tracker-reset: "<red>Usage: /lc cropstracker reset <player>"

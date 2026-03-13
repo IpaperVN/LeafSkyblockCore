@@ -1,0 +1,19 @@
+# Permissions Configuration
+# Define all plugin permissions here for easy customization
+
+crops-tracker:
+  use: "leafskyblockcore.cropstracker"
+  admin: "leafskyblockcore.cropstracker.admin"
+  check: "leafskyblockcore.cropstracker.check"
+  set: "leafskyblockcore.cropstracker.set"
+  add: "leafskyblockcore.cropstracker.add"
+  reset: "leafskyblockcore.cropstracker.reset"
+  reload: "leafskyblockcore.cropstracker.reload"
+
+command-blocker:
+  plugins: "leafskyblockcore.command.plugins"
+  version: "leafskyblockcore.command.version"
+  about: "leafskyblockcore.command.about"
+  help: "leafskyblockcore.command.help"
+  stop: "leafskyblockcore.command.stop"
+  reload: "leafskyblockcore.command.reload"
