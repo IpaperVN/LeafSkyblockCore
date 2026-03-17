@@ -1,21 +1,22 @@
 # 🍃 LeafSkyblockCore
 
-> **Plugin core cho server Skyblock với hệ thống tracking nông sản và bảo mật commands**
+> **Plugin core cho server Skyblock với hệ thống tracking nông sản và generator**
 
 ---
 
 ## 📋 Tổng Quan
 
-LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, chặn commands không mong muốn và nhiều tính năng mở rộng.
+LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, generator block tự động sinh vật phẩm với hologram đếm ngược và nhiều tính năng mở rộng.
 
 ### ✨ Tính Năng Chính
 
 - 🌾 **Crops Tracker** - Theo dõi điểm khi thu hoạch nông sản
-- 🚫 **Command Blocker** - Chặn commands và tab-complete không mong muốn
-- 🏝️ **Tích hợp SuperiorSkyblock2** - Chỉ tính điểm trong đảo của bạn
+- ⚙️ **Generator** - Block generator tự động sinh vật phẩm, hologram đếm ngược (DecentHolograms)
+- 🖥️ **Generator GUI** - Chuột phải vào generator để xem thông tin và nhận vật phẩm
+- 🏝️ **Tích hợp SuperiorSkyblock2** - Chỉ tính điểm và đặt generator trong đảo của bạn
 - 📊 **PlaceholderAPI Support** - Hiển thị điểm trên scoreboard, tab, chat
 - 💾 **SQLite Database** - Lưu trữ dữ liệu an toàn với HikariCP
-- ⚙️ **Cấu hình linh hoạt** - Tùy chỉnh messages, permissions, crops points
+- ⚙️ **Cấu hình linh hoạt** - Tùy chỉnh messages, permissions, crops points, GUI layout
 - 🎨 **MiniMessage Format** - Hỗ trợ màu sắc, gradient, hover, click events
 
 ---
@@ -27,6 +28,7 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 | **Paper/Spigot** | ✅ | 1.20.x - 1.21.x |
 | **Java** | ✅ | 21+ |
 | **SuperiorSkyblock2** | ⚠️ | Latest (Softdepend) |
+| **DecentHolograms** | ⚠️ | Latest (Softdepend) |
 | **PlaceholderAPI** | ❌ | Latest (Khuyến nghị) |
 
 ---
@@ -35,7 +37,7 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 
 1. **Download** plugin từ releases
 2. **Đặt** file `.jar` vào folder `plugins/`
-3. **Cài đặt** SuperiorSkyblock2 (nếu dùng Crops Tracker)
+3. **Cài đặt** SuperiorSkyblock2 và DecentHolograms
 4. **Khởi động lại** server
 5. **Cấu hình** files trong `plugins/LeafSkyblockCore/`
 
@@ -52,7 +54,20 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 | `/lc cropstracker set <player> <points>` | Set điểm cho người chơi | `leafskyblockcore.cropstracker.set` |
 | `/lc cropstracker add <player> <points>` | Thêm điểm cho người chơi | `leafskyblockcore.cropstracker.add` |
 | `/lc cropstracker reset <player>` | Reset điểm người chơi | `leafskyblockcore.cropstracker.reset` |
-| `/lc cropstracker reload` | Reload config | `leafskyblockcore.cropstracker.reload` |
+
+### ⚙️ Generator
+
+| Command | Mô tả | Permission |
+|---------|-------|------------|
+| `/lc generator give <player> [amount]` | Cho player item generator | `leafskyblockcore.generator.give` |
+
+### 🔄 Reload
+
+| Command | Mô tả | Permission |
+|---------|-------|------------|
+| `/lc reload` | Reload tất cả configs | `leafskyblockcore.reload` |
+| `/lc reload all` | Reload tất cả configs | `leafskyblockcore.reload` |
+| `/lc reload generator` | Reload generator config | `leafskyblockcore.reload` |
 
 **Aliases:** `/lc`, `/leaf`, `/leafcore`, `/leafskyblockcore`
 
@@ -60,34 +75,35 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 
 ## 🔑 Permissions
 
-### Crops Tracker Permissions
+### Crops Tracker
 
 ```yaml
-leafskyblockcore.cropstracker          # Sử dụng command cơ bản
+leafskyblockcore.cropstracker          # Xem điểm của bạn
 leafskyblockcore.cropstracker.check    # Xem điểm người khác
 leafskyblockcore.cropstracker.set      # Set điểm (Admin)
 leafskyblockcore.cropstracker.add      # Thêm điểm (Admin)
 leafskyblockcore.cropstracker.reset    # Reset điểm (Admin)
-leafskyblockcore.cropstracker.reload   # Reload config (Admin)
-leafskyblockcore.cropstracker.admin    # Tất cả quyền admin
+leafskyblockcore.cropstracker.admin    # Tất cả quyền admin crops
 ```
 
-### Command Blocker Permissions
+### Generator
 
 ```yaml
-leafskyblockcore.command.plugins       # Dùng /plugins, /pl
-leafskyblockcore.command.version       # Dùng /version, /ver
-leafskyblockcore.command.about         # Dùng /about
-leafskyblockcore.command.help          # Dùng /help, /?
-leafskyblockcore.command.stop          # Dùng /stop
-leafskyblockcore.command.reload        # Dùng /reload, /rl
+leafskyblockcore.generator.use         # Đặt generator block
+leafskyblockcore.generator.break       # Phá generator block
+leafskyblockcore.generator.admin       # Bypass mọi check generator
+leafskyblockcore.generator.give        # Cho item generator (Admin)
+```
+
+### Reload
+
+```yaml
+leafskyblockcore.reload                # Reload configs
 ```
 
 ---
 
 ## 📊 PlaceholderAPI
-
-### Placeholders có sẵn
 
 | Placeholder | Mô tả | Ví dụ |
 |-------------|-------|-------|
@@ -95,22 +111,8 @@ leafskyblockcore.command.reload        # Dùng /reload, /rl
 | `%leafskyblockcore_crops_rank%` | Hạng của người chơi | `5` |
 | `%leafskyblockcore_crops_top_1_name%` | Tên người chơi top 1 | `Steve` |
 | `%leafskyblockcore_crops_top_1_points%` | Điểm của người chơi top 1 | `99999` |
-| `%leafskyblockcore_crops_top_2_name%` | Tên người chơi top 2 | `Alex` |
-| `%leafskyblockcore_crops_top_2_points%` | Điểm của người chơi top 2 | `88888` |
 | `%leafskyblockcore_crops_top_X_name%` | Tên người chơi top X (1-10) | `Player` |
 | `%leafskyblockcore_crops_top_X_points%` | Điểm của người chơi top X (1-10) | `77777` |
-
-### Cách sử dụng
-
-**Trong scoreboard:**
-```yaml
-- "&aĐiểm nông sản: &e%leafskyblockcore_crops_points%"
-```
-
-**Trong tab:**
-```yaml
-header: "&6Điểm: &e%leafskyblockcore_crops_points%"
-```
 
 ---
 
@@ -120,13 +122,13 @@ header: "&6Điểm: &e%leafskyblockcore_crops_points%"
 
 ```
 plugins/LeafSkyblockCore/
-├── data.db                   # SQLite database (tất cả data)
+├── data.db                   # SQLite database
 ├── messages.yml              # Tất cả messages
 ├── permissions.yml           # Tất cả permissions
 ├── crops-tracker/
 │   └── config.yml           # Config crops và điểm
-└── command-blocker/
-    └── config.yml           # Config chặn commands
+└── generator/
+    └── config.yml           # Config generator, output, GUI
 ```
 
 ---
@@ -139,126 +141,114 @@ plugins/LeafSkyblockCore/
 
 ```yaml
 crops:
-  WHEAT: 1          # Lúa mì = 1 điểm
-  CARROTS: 1        # Cà rốt = 1 điểm
-  POTATOES: 1       # Khoai tây = 1 điểm
-  BEETROOTS: 1      # Củ cải đường = 1 điểm
-  NETHER_WART: 2    # Nether Wart = 2 điểm
+  WHEAT: 1
+  CARROTS: 1
+  POTATOES: 1
+  BEETROOTS: 1
+  NETHER_WART: 2
   SWEET_BERRY_BUSH: 1
   COCOA: 2
   MELON: 1
   PUMPKIN: 1
 ```
 
-**Thêm crops mới:**
-```yaml
-crops:
-  TÊN_MATERIAL: ĐIỂM
-```
-
 ### Cách Hoạt Động
 
-**Điều kiện tính điểm:**
 - ✅ Nông sản đã **chín hoàn toàn**
 - ✅ Đang ở trong **đảo của bạn** (SuperiorSkyblock2)
-- ✅ **Không phải đảo** của người khác
-- ❌ **Không tính** fortune drops (chỉ tính 1 lần)
-
-**Ví dụ:**
-1. Bạn trồng lúa mì trong đảo
-2. Lúa mì chín hoàn toàn
-3. Bạn thu hoạch → **+1 điểm**
-4. Fortune III cho 3 lúa mì → **Vẫn chỉ +1 điểm**
+- ❌ **Không tính** fortune drops (chỉ tính 1 lần mỗi block)
 
 ---
 
-## 🚫 Command Blocker
+## ⚙️ Generator
 
 ### Config
 
-**File:** `command-blocker/config.yml`
+**File:** `generator/config.yml`
 
 ```yaml
-enabled: true
-block-all-tab-complete: true  # Chặn tất cả tab-complete
+countdown: 15          # Giây mỗi chu kỳ
+max-per-island: 1      # Số generator tối đa mỗi đảo
 
-commands:
-  # Commands được phép (whitelist khi block-all: true)
-  lc: "leafskyblockcore.use"
-  leafskyblockcore: "leafskyblockcore.use"
-  leaf: "leafskyblockcore.use"
-  leafcore: "leafskyblockcore.use"
-  
-  # Vanilla commands cần permission
-  plugins: "leafskyblockcore.command.plugins"
-  pl: "leafskyblockcore.command.plugins"
-  version: "leafskyblockcore.command.version"
-  ver: "leafskyblockcore.command.version"
-  about: "leafskyblockcore.command.about"
-  help: "leafskyblockcore.command.help"
-  "?": "leafskyblockcore.command.help"
-  stop: "leafskyblockcore.command.stop"
-  reload: "leafskyblockcore.command.reload"
-  rl: "leafskyblockcore.command.reload"
+hologram:
+  lines:
+    counting: "&e⏳ &6{seconds}s"
+
+item:                  # Item để đặt generator
+  material: END_PORTAL_FRAME
+  name: "&6⚙ Generator"
+  lore:
+    - "&7Đặt xuống để kích hoạt"
+    - "&7Đếm ngược: &e{countdown}s"
+  custom-model-data: 0
+
+output:                # Vật phẩm sinh ra sau mỗi countdown
+  material: PAPER
+  amount: 1
+  name: ""
+  lore: []
+
+gui:
+  title: "&8⚙ Generator"
+  size: 27
+  status-counting: "&e⏳ Counting down"
+  background:
+    material: GRAY_STAINED_GLASS_PANE
+    name: " "
+  slots:
+    info:
+      slot: 11
+      material: END_PORTAL_FRAME
+      name: "&6⚙ Generator"
+      lore:
+        - "&7Status: {status}"
+        - "&7Time left: &e{seconds}s"
+        - "&7Placed by: &e{player}"
+    collect:
+      slot: 15
+      material: CHEST
+      name: "&aCollect Items"
+      lore:
+        - "&7Stored: &e{stored} items"
+        - "&7Click to collect!"
+      action: collect
 ```
 
-### 2 Chế Độ Hoạt Động
+### Placeholders trong GUI
 
-#### 🔴 Mode 1: Block All (Khuyến nghị)
-```yaml
-block-all-tab-complete: true
-```
+| Placeholder | Mô tả |
+|-------------|-------|
+| `{seconds}` | Thời gian đếm ngược còn lại |
+| `{status}` | Trạng thái hiện tại |
+| `{stored}` | Tổng số vật phẩm đang chờ nhận |
+| `{player}` | Tên người đặt generator |
 
-**Cách hoạt động:**
-- ✅ **CHỈ** hiện commands trong config
-- ✅ **CHỈ** cho phép dùng commands trong config
-- ✅ Phải có permission tương ứng
-- ❌ Tất cả commands khác bị ẩn và chặn
+### Cách Hoạt Động
 
-**Ví dụ:**
-```yaml
-commands:
-  lc: "leafskyblockcore.use"
-  spawn: "essentials.spawn"
-```
-→ Người chơi chỉ thấy `/lc` và `/spawn` khi tab, không thấy gì khác!
+1. Player đặt block generator trong đảo của mình
+2. Hologram xuất hiện phía trên block, bắt đầu đếm ngược
+3. Hết countdown → sinh 1 output item vào kho → **restart countdown ngay lập tức** (lặp vô tận)
+4. Player chuột phải vào block → mở GUI, thấy số item đang chờ
+5. Click nút **Collect** → nhận tất cả item (countdown không bị ảnh hưởng)
+6. Player phá block → hologram xóa, item generator drop lại
 
-#### 🟡 Mode 2: Blacklist
-```yaml
-block-all-tab-complete: false
-```
+### Điều Kiện
 
-**Cách hoạt động:**
-- ✅ Hiện tất cả commands
-- ❌ Chặn commands trong config nếu không có permission
-- ✅ Commands không trong config vẫn hiện bình thường
+- ✅ Cần permission `leafskyblockcore.generator.use` để đặt
+- ✅ Cần permission `leafskyblockcore.generator.break` hoặc `generator.admin` để phá
+- ✅ Phải đặt trong **đảo của bạn** (SuperiorSkyblock2)
+- ✅ Không vượt quá `max-per-island`
 
-### Thêm Commands Mới
+### Sau Khi Server Restart
 
-**Cho phép command của plugin khác:**
-```yaml
-commands:
-  spawn: "essentials.spawn"
-  home: "essentials.home"
-  tpa: "essentials.tpa"
-  shop: "yourplugin.shop"
-```
-
-**Chặn command vanilla:**
-```yaml
-commands:
-  gamemode: "minecraft.command.gamemode"
-  give: "minecraft.command.give"
-  op: "minecraft.command.op"
-```
+- Generator đang đếm → restore đúng thời gian còn lại (trừ thời gian offline)
+- Nếu thời gian offline > thời gian còn lại → sinh item luôn rồi restart countdown
 
 ---
 
 ## 💬 Messages Config
 
-**File:** `messages.yml`
-
-Hỗ trợ **MiniMessage format** với màu sắc, gradient, hover, click!
+**File:** `messages.yml` — Hỗ trợ **MiniMessage format**
 
 ```yaml
 general:
@@ -269,15 +259,14 @@ crops-tracker:
   your-points: "<green>Your crops points: <yellow>{points}"
   player-points: "<green>{player}'s crops points: <yellow>{points}"
 
-command-blocker:
-  blocked: "<red>You don't have permission to use /{command}!"
-```
+generator:
+  not-own-island: "<red>You can only place generators on your own island!"
+  give-success: "<green>Gave <yellow>{amount}x Generator</yellow> to <yellow>{player}</yellow>!"
+  max-reached: "<red>You have reached the maximum number of generators on this island!"
 
-**Ví dụ nâng cao:**
-```yaml
-your-points: "<gradient:#00ff00:#ffff00>Điểm: {points}</gradient>"
-hover-message: "<hover:show_text:'<gold>Click để xem top!'>Xem điểm</hover>"
-click-message: "<click:run_command:/lc cropstracker top>Xem bảng xếp hạng</click>"
+reload:
+  all: "<green>Reloaded all configs!"
+  generator: "<green>Reloaded generator config!"
 ```
 
 [📖 MiniMessage Format Guide](https://docs.advntr.dev/minimessage/format.html)
@@ -289,55 +278,33 @@ click-message: "<click:run_command:/lc cropstracker top>Xem bảng xếp hạng<
 ### Cho Players
 
 ```bash
-# Xem điểm của bạn
 /lc cropstracker
-
-# Xem điểm người khác
 /lc cropstracker check Steve
 ```
 
 ### Cho Admins
 
 ```bash
-# Set điểm cho người chơi
 /lc cropstracker set Steve 10000
-
-# Thêm điểm thưởng
 /lc cropstracker add Steve 500
-
-# Reset điểm
 /lc cropstracker reset Steve
-
-# Reload config
-/lc cropstracker reload
+/lc generator give Steve 3
+/lc reload
+/lc reload generator
 ```
 
-### Setup Command Blocker
+### Tạo Leaderboard Crops
 
-**Bước 1:** Bật block-all mode
 ```yaml
-block-all-tab-complete: true
+lines:
+  - "&6&lTOP FARMERS"
+  - "&e1. %leafskyblockcore_crops_top_1_name%: &a%leafskyblockcore_crops_top_1_points%"
+  - "&e2. %leafskyblockcore_crops_top_2_name%: &a%leafskyblockcore_crops_top_2_points%"
+  - "&e3. %leafskyblockcore_crops_top_3_name%: &a%leafskyblockcore_crops_top_3_points%"
+  - ""
+  - "&7Your rank: &e#%leafskyblockcore_crops_rank%"
+  - "&7Your points: &e%leafskyblockcore_crops_points%"
 ```
-
-**Bước 2:** Thêm commands được phép
-```yaml
-commands:
-  lc: "leafskyblockcore.use"
-  spawn: "essentials.spawn"
-  home: "essentials.home"
-  sethome: "essentials.sethome"
-  tpa: "essentials.tpa"
-  shop: "shop.use"
-```
-
-**Bước 3:** Set permissions trong LuckPerms
-```bash
-/lp group default permission set leafskyblockcore.use true
-/lp group default permission set essentials.spawn true
-/lp group default permission set essentials.home true
-```
-
-**Kết quả:** Người chơi chỉ thấy và dùng được 5 commands trên!
 
 ---
 
@@ -354,22 +321,19 @@ commands:
 - ✅ Kiểm tra crops có trong config không
 - ✅ Cài đặt SuperiorSkyblock2
 
-### Command Blocker không hoạt động?
-- ✅ Kiểm tra `enabled: true` trong config
-- ✅ Kiểm tra permissions đã set đúng chưa
-- ✅ Reload plugin: `/lc cropstracker reload`
-- ✅ Restart server để áp dụng PlayerCommandSendEvent
+### Generator không hoạt động?
+- ✅ Kiểm tra đã cài DecentHolograms chưa
+- ✅ Kiểm tra permission `leafskyblockcore.generator.use`
+- ✅ Kiểm tra bạn đang đứng trong đảo của mình
 
-### Tab-complete vẫn hiện nhiều commands?
-- ✅ Set `block-all-tab-complete: true`
-- ✅ Chỉ thêm commands muốn hiện vào config
-- ✅ **Restart server** (không phải reload!)
-- ✅ Kiểm tra permissions của người chơi
+### GUI không mở?
+- ✅ Chuột phải vào đúng block generator (không phải block thường)
+- ✅ Kiểm tra `gui.size` là bội số của 9 (9, 18, 27, 36, 45, 54)
 
 ### Placeholder không hoạt động?
 - ✅ Cài đặt PlaceholderAPI
 - ✅ Reload PlaceholderAPI: `/papi reload`
-- ✅ Test placeholder: `/papi parse me %leafskyblockcore_crops_points%`
+- ✅ Test: `/papi parse me %leafskyblockcore_crops_points%`
 
 ### Database bị lỗi?
 - ✅ Kiểm tra file `data.db` có tồn tại không
@@ -378,77 +342,29 @@ commands:
 
 ---
 
-## 💡 Tips & Tricks
-
-### Bảo mật Server tốt nhất
-
-1. **Bật block-all mode:**
-```yaml
-block-all-tab-complete: true
-```
-
-2. **Chỉ cho phép commands cần thiết:**
-```yaml
-commands:
-  lc: "leafskyblockcore.use"
-  spawn: "essentials.spawn"
-  home: "essentials.home"
-  # Không thêm /plugins, /version, /help...
-```
-
-3. **Set permissions chặt chẽ:**
-```bash
-# Chỉ admin mới thấy /plugins
-/lp group admin permission set leafskyblockcore.command.plugins true
-```
-
-### Tạo Leaderboard Crops
-
-Dùng PlaceholderAPI với plugin scoreboard:
-```yaml
-lines:
-  - "&6&lTOP FARMERS"
-  - "&e1. %leafskyblockcore_crops_top_1_name%: &a%leafskyblockcore_crops_top_1_points%"
-  - "&e2. %leafskyblockcore_crops_top_2_name%: &a%leafskyblockcore_crops_top_2_points%"
-  - "&e3. %leafskyblockcore_crops_top_3_name%: &a%leafskyblockcore_crops_top_3_points%"
-  - "&e4. %leafskyblockcore_crops_top_4_name%: &a%leafskyblockcore_crops_top_4_points%"
-  - "&e5. %leafskyblockcore_crops_top_5_name%: &a%leafskyblockcore_crops_top_5_points%"
-  - ""
-  - "&7Your rank: &e#%leafskyblockcore_crops_rank%"
-  - "&7Your points: &e%leafskyblockcore_crops_points%"
-```
-
-### Backup Dữ Liệu
-
-```bash
-# Backup database
-cp plugins/LeafSkyblockCore/data.db backups/data-$(date +%Y%m%d).db
-
-# Backup configs
-tar -czf backups/configs-$(date +%Y%m%d).tar.gz plugins/LeafSkyblockCore/*.yml plugins/LeafSkyblockCore/*/*.yml
-```
-
----
-
-## 📞 Hỗ Trợ
-
-- 🐛 **Bug Report:** [GitHub Issues](https://github.com/yourusername/LeafSkyblockCore/issues)
-- 💡 **Feature Request:** [GitHub Issues](https://github.com/yourusername/LeafSkyblockCore/issues)
-- 💬 **Discord:** [Join Server](https://discord.gg/yourserver)
-- 📧 **Email:** support@yourdomain.com
-
----
-
 ## 📝 Changelog
 
+### Version 1.1
+- ✨ Generator GUI - chuột phải để xem thông tin và nhận vật phẩm
+- ✨ Output item - generator tự động sinh vật phẩm sau mỗi countdown
+- ✨ Generator tự động restart countdown sau khi sinh vật phẩm
+- ✨ GUI live update - đếm ngược cập nhật realtime trong GUI
+- ✨ Generator give command
+- 🔧 Fix MONITOR priority bug trong BlockPlaceEvent/BlockBreakEvent
+- 🔧 Fix hologram trùng tên khi restore sau restart
+- 🔧 Fix NPE world unload trong async lambda
+- 🔧 Fix secondsLeft stale khi restore
+- 🔧 Fix holoName collision giữa các world
+- 🔧 Fix hardcode material trong listener
+
 ### Version 1.0
-- ✨ Thêm Crops Tracker system
-- ✨ Thêm Command Blocker với 2 modes
+- ✨ Crops Tracker system
+- ✨ Generator system với DecentHolograms countdown
 - ✨ Tích hợp SuperiorSkyblock2
 - ✨ PlaceholderAPI support
 - ✨ SQLite database với HikariCP
 - ✨ MiniMessage format support
-- ✨ Config system (messages, permissions, crops, commands)
+- ✨ Config system (messages, permissions, crops, generator)
 
 ---
 
@@ -463,6 +379,7 @@ Copyright © 2024 ipapervn. All rights reserved.
 - **Paper Team** - Paper API
 - **PlaceholderAPI** - Placeholder support
 - **SuperiorSkyblock2** - Island management
+- **DecentHolograms** - Hologram support
 - **HikariCP** - Database connection pool
 - **Kyori Adventure** - MiniMessage format
 

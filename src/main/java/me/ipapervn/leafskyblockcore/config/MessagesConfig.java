@@ -32,6 +32,7 @@ public class MessagesConfig {
             createFile();
         } else {
             config = YamlConfiguration.loadConfiguration(file);
+            mergeDefaults();
         }
         loadMessages();
     }
@@ -69,27 +70,53 @@ public class MessagesConfig {
     }
 
     private void createDefaults() {
-        config.set("general.no-permission", "<red>You don't have permission to use this command!");
-        config.set("general.player-only", "<red>This command is for players only!");
-        config.set("general.player-not-found", "<red>Player not found!");
-        config.set("general.invalid-number", "<red>Invalid number!");
-        config.set("general.unknown-command", "<red>Unknown command: {command}");
-        
-        config.set("crops-tracker.your-points", "<green>Your crops points: <yellow>{points}");
-        config.set("crops-tracker.player-points", "<green>{player}'s crops points: <yellow>{points}");
-        config.set("crops-tracker.set-points", "<green>Set {player}'s points to <yellow>{points}");
-        config.set("crops-tracker.add-points", "<green>Added <yellow>{points}</yellow> points to {player}");
-        config.set("crops-tracker.reset-points", "<green>Reset {player}'s points");
-        config.set("crops-tracker.reloaded", "<green>Crops tracker reloaded!");
-        
-        config.set("usage.crops-tracker-check", "<red>Usage: /lc cropstracker check <player>");
-        config.set("usage.crops-tracker-set", "<red>Usage: /lc cropstracker set <player> <points>");
-        config.set("usage.crops-tracker-add", "<red>Usage: /lc cropstracker add <player> <points>");
-        config.set("usage.crops-tracker-reset", "<red>Usage: /lc cropstracker reset <player>");
-        
-        config.set("command-blocker.blocked", "<red>You don't have permission to use /{command}!");
-        
+        setDefaults();
         save();
+    }
+
+    private void mergeDefaults() {
+        YamlConfiguration defaults = new YamlConfiguration();
+        setDefaultsTo(defaults);
+        boolean changed = false;
+        for (String key : defaults.getKeys(true)) {
+            if (!defaults.isConfigurationSection(key) && !config.contains(key)) {
+                config.set(key, defaults.get(key));
+                changed = true;
+            }
+        }
+        if (changed) save();
+    }
+
+    private void setDefaults() {
+        setDefaultsTo(config);
+    }
+
+    private void setDefaultsTo(@NotNull FileConfiguration target) {
+        target.set("general.no-permission", "<red>You don't have permission to use this command!");
+        target.set("general.player-only", "<red>This command is for players only!");
+        target.set("general.player-not-found", "<red>Player not found!");
+        target.set("general.invalid-number", "<red>Invalid number!");
+        target.set("general.unknown-command", "<red>Unknown command: {command}");
+
+        target.set("crops-tracker.your-points", "<green>Your crops points: <yellow>{points}");
+        target.set("crops-tracker.player-points", "<green>{player}'s crops points: <yellow>{points}");
+        target.set("crops-tracker.set-points", "<green>Set {player}'s points to <yellow>{points}");
+        target.set("crops-tracker.add-points", "<green>Added <yellow>{points}</yellow> points to {player}");
+        target.set("crops-tracker.reset-points", "<green>Reset {player}'s points");
+        target.set("crops-tracker.reloaded", "<green>Crops tracker reloaded!");
+
+        target.set("usage.crops-tracker-check", "<red>Usage: /lc cropstracker check <player>");
+        target.set("usage.crops-tracker-set", "<red>Usage: /lc cropstracker set <player> <points>");
+        target.set("usage.crops-tracker-add", "<red>Usage: /lc cropstracker add <player> <points>");
+        target.set("usage.crops-tracker-reset", "<red>Usage: /lc cropstracker reset <player>");
+        target.set("usage.generator-give", "<red>Usage: /lc generator give <player> [amount]");
+
+        target.set("generator.not-own-island", "<red>You can only place generators on your own island!");
+        target.set("generator.give-success", "<green>Gave <yellow>{amount}x Generator</yellow> to <yellow>{player}</yellow>!");
+        target.set("generator.max-reached", "<red>You have reached the maximum number of generators on this island!");
+
+        target.set("reload.all", "<green>Reloaded all configs!");
+        target.set("reload.generator", "<green>Reloaded generator config!");
     }
 
     private void loadMessages() {

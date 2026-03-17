@@ -10,10 +10,12 @@ crops-tracker:
   reset: "leafskyblockcore.cropstracker.reset"
   reload: "leafskyblockcore.cropstracker.reload"
 
-command-blocker:
-  plugins: "leafskyblockcore.command.plugins"
-  version: "leafskyblockcore.command.version"
-  about: "leafskyblockcore.command.about"
-  help: "leafskyblockcore.command.help"
-  stop: "leafskyblockcore.command.stop"
-  reload: "leafskyblockcore.command.reload"
+
+generator:
+  use: "leafskyblockcore.generator.use"
+  break: "leafskyblockcore.generator.break"
+  admin: "leafskyblockcore.generator.admin"
+  give: "leafskyblockcore.generator.give"
+
+reload:
+  use: "leafskyblockcore.reload"

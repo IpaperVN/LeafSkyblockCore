@@ -4,12 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="" />
+    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/CommandBlockerListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/CommandBlockerManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/permissions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/permissions.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "IpaperVN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IpaperVN/LeafSkyblockCore.git",
+    "accountId": "649b8871-21d3-4240-bc6c-404f68fa0ea5"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -24,7 +54,9 @@
     "Maven.LeafSkyblockCore [package].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -56,6 +88,7 @@
       <updated>1773317951889</updated>
       <workItem from="1773317956019" duration="5355000" />
       <workItem from="1773396307197" duration="7313000" />
+      <workItem from="1773716732566" duration="15299000" />
     </task>
     <servers />
   </component>

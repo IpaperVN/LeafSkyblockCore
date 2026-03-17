@@ -72,14 +72,14 @@ public class PermissionsConfig {
         config.set("crops-tracker.add", "leafskyblockcore.cropstracker.add");
         config.set("crops-tracker.reset", "leafskyblockcore.cropstracker.reset");
         config.set("crops-tracker.reload", "leafskyblockcore.cropstracker.reload");
-        
-        config.set("command-blocker.plugins", "leafskyblockcore.command.plugins");
-        config.set("command-blocker.version", "leafskyblockcore.command.version");
-        config.set("command-blocker.about", "leafskyblockcore.command.about");
-        config.set("command-blocker.help", "leafskyblockcore.command.help");
-        config.set("command-blocker.stop", "leafskyblockcore.command.stop");
-        config.set("command-blocker.reload", "leafskyblockcore.command.reload");
-        
+
+        config.set("generator.use", "leafskyblockcore.generator.use");
+        config.set("generator.break", "leafskyblockcore.generator.break");
+        config.set("generator.admin", "leafskyblockcore.generator.admin");
+        config.set("generator.give", "leafskyblockcore.generator.give");
+
+        config.set("reload.use", "leafskyblockcore.reload");
+
         save();
     }
 
