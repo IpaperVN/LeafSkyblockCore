@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +27,9 @@
     "accountId": "649b8871-21d3-4240-bc6c-404f68fa0ea5"
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -76,7 +78,7 @@
       <updated>1773317951889</updated>
       <workItem from="1773317956019" duration="5355000" />
       <workItem from="1773396307197" duration="7313000" />
-      <workItem from="1773716732566" duration="16669000" />
+      <workItem from="1773716732566" duration="18036000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -86,7 +88,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773739935928</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1773741061590</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773741061590</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
