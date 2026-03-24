@@ -40,7 +40,7 @@ public final class LeafSkyblockCore extends JavaPlugin {
         commandLoader = new CommandLoader(this, commandManager);
         commandLoader.loadCommands();
 
-        Bukkit.getPluginManager().registerEvents(new CropsTrackerListener(cropsTrackerManager), this);
+        Bukkit.getPluginManager().registerEvents(new CropsTrackerListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GeneratorListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GeneratorGuiListener(this), this);
 

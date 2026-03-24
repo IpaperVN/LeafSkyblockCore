@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +28,7 @@ public class CropsTrackerManager {
     private final Map<UUID, Long> cachedPoints = new HashMap<>();
     private File configFile;
     private FileConfiguration config;
+    private SeasonManager seasonManager;
 
     public CropsTrackerManager(@NotNull LeafSkyblockCore plugin, @NotNull DatabaseManager database) {
         this.plugin = plugin;
@@ -58,6 +60,7 @@ public class CropsTrackerManager {
         }
 
         loadCropsPoints();
+        seasonManager = new SeasonManager(plugin, config);
     }
 
     private void createConfigFile() {
@@ -83,6 +86,14 @@ public class CropsTrackerManager {
         config.set("crops.COCOA", 2);
         config.set("crops.MELON", 1);
         config.set("crops.PUMPKIN", 1);
+
+        config.set("seasons.enabled", true);
+        config.set("seasons.duration", "30m");
+        config.set("seasons.order", List.of("SPRING", "SUMMER", "AUTUMN", "WINTER"));
+        config.set("seasons.SPRING.crops", List.of("WHEAT", "CARROTS", "POTATOES"));
+        config.set("seasons.SUMMER.crops", List.of("MELON", "PUMPKIN", "SWEET_BERRY_BUSH"));
+        config.set("seasons.AUTUMN.crops", List.of("BEETROOTS", "NETHER_WART", "COCOA"));
+        config.set("seasons.WINTER.crops", List.of());
         saveConfig();
     }
 
@@ -127,9 +138,12 @@ public class CropsTrackerManager {
 
     public void reload() {
         loadConfig();
+        if (seasonManager != null) seasonManager.reload(config);
         cachedPoints.clear();
         loadAllPoints();
     }
+
+    public SeasonManager getSeasonManager() { return seasonManager; }
 
     public int getCropPoints(@NotNull Material material) {
         return cropsPoints.getOrDefault(material, 0);

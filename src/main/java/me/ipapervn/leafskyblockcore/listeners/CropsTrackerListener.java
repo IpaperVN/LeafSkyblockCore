@@ -3,6 +3,7 @@ package me.ipapervn.leafskyblockcore.listeners;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import me.ipapervn.leafskyblockcore.LeafSkyblockCore;
 import me.ipapervn.leafskyblockcore.manager.CropsTrackerManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -19,8 +20,8 @@ public class CropsTrackerListener implements Listener {
 
     private final CropsTrackerManager manager;
 
-    public CropsTrackerListener(@NotNull CropsTrackerManager manager) {
-        this.manager = manager;
+    public CropsTrackerListener(@NotNull LeafSkyblockCore plugin) {
+        this.manager = plugin.getCropsTrackerManager();
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -29,13 +30,9 @@ public class CropsTrackerListener implements Listener {
         Block block = event.getBlock();
         Material material = block.getType();
 
-        if (!manager.isCropTracked(material)) {
-            return;
-        }
-
-        if (!isFullyGrown(block)) {
-            return;
-        }
+        if (!manager.isCropTracked(material)) return;
+        if (!isFullyGrown(block)) return;
+        if (!manager.getSeasonManager().isAllowed(material)) return;
 
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
         Island island = SuperiorSkyblockAPI.getIslandAt(block.getLocation());

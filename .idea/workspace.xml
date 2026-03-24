@@ -4,27 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/.idea/LeafSkyblockCore.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/amazonq.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="update BaseConfig">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/CropsTrackerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/CropsTrackerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/GeneratorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/GeneratorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/database/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/gui/GeneratorGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/gui/GeneratorGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/GeneratorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/GeneratorListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/CropsTrackerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/CropsTrackerListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/CropsTrackerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/CropsTrackerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/GeneratorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/GeneratorManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +93,7 @@
       <workItem from="1774256169511" duration="2728000" />
       <workItem from="1774266478188" duration="2745000" />
       <workItem from="1774349444058" duration="320000" />
-      <workItem from="1774350696692" duration="2095000" />
+      <workItem from="1774350696692" duration="7868000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -125,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773741061590</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update BaseConfig">
+      <option name="closed" value="true" />
+      <created>1774354719980</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1774354719981</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +127,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="update BaseConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="update BaseConfig" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
