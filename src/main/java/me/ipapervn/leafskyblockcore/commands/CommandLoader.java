@@ -7,6 +7,8 @@ import me.ipapervn.leafskyblockcore.commands.nodes.ReloadCommand;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class CommandLoader {
 
     private final LeafSkyblockCore plugin;
@@ -31,11 +33,7 @@ public class CommandLoader {
     @SuppressWarnings("unused")
     public void reloadCommands() {
         plugin.getComponentLogger().info(Component.text("Reloading command nodes..."));
-        
-        for (CommandNode node : commandManager.getNodes()) {
-            commandManager.unregisterNode(node.getName());
-        }
-
+        new ArrayList<>(commandManager.getNodes()).forEach(node -> commandManager.unregisterNode(node.getName()));
         loadCommands();
     }
 }

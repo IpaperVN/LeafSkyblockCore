@@ -2,7 +2,7 @@ package me.ipapervn.leafskyblockcore.gui;
 
 import me.ipapervn.leafskyblockcore.LeafSkyblockCore;
 import me.ipapervn.leafskyblockcore.manager.GeneratorManager;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,6 +22,8 @@ import java.util.List;
  * Layout và items hoàn toàn config trong generator/config.yml section gui.
  */
 public class GeneratorGui implements InventoryHolder {
+
+    private static final MiniMessage MM = MiniMessage.miniMessage();
 
     private final LeafSkyblockCore plugin;
     private final Inventory inventory;
@@ -54,7 +56,7 @@ public class GeneratorGui implements InventoryHolder {
             playerName, secondsLeft, status, storedCount);
 
         this.inventory = Bukkit.createInventory(this, size,
-            LegacyComponentSerializer.legacyAmpersand().deserialize(title));
+            MM.deserialize(title));
 
         ItemStack bg = buildItem(
             config.getString("gui.background.material", "GRAY_STAINED_GLASS_PANE"),
@@ -113,11 +115,10 @@ public class GeneratorGui implements InventoryHolder {
         if (mat == null) mat = Material.STONE;
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(LegacyComponentSerializer.legacyAmpersand()
-            .deserialize(apply(name, playerName, seconds, status, stored)));
+        meta.displayName(MM.deserialize(apply(name, playerName, seconds, status, stored)));
         if (!lore.isEmpty()) {
             meta.lore(lore.stream()
-                .map(l -> LegacyComponentSerializer.legacyAmpersand().deserialize(l))
+                .map(MM::deserialize)
                 .toList());
         }
         item.setItemMeta(meta);

@@ -39,14 +39,15 @@ public class GeneratorListener implements Listener {
 
         Player player = event.getPlayer();
 
-        if (!player.hasPermission(plugin.getPermissionsConfig().getPermission("generator.use"))) {
+        if (!player.hasPermission(plugin.getPermissionsConfig().getPermission("generator.use"))
+            && manager.isNotAdmin(player)) {
             event.setCancelled(true);
             player.sendMessage(plugin.getMessagesConfig().getMessage("general.no-permission"));
             return;
         }
 
         Island island = getOwnIsland(player, block);
-        if (island == null) {
+        if (island == null && manager.isNotAdmin(player)) {
             event.setCancelled(true);
             player.sendMessage(plugin.getMessagesConfig().getMessage("generator.not-own-island"));
             return;
@@ -58,12 +59,14 @@ public class GeneratorListener implements Listener {
             return;
         }
 
-        // Fix 4: max per island check
-        int max = manager.getMaxPerIsland();
-        if (max > 0 && manager.countGeneratorsOnIsland(island) >= max) {
-            event.setCancelled(true);
-            player.sendMessage(plugin.getMessagesConfig().getMessage("generator.max-reached"));
-            return;
+        // Fix 4: max per island check (admin bypasses)
+        if (manager.isNotAdmin(player) && island != null) {
+            int max = manager.getMaxPerIsland();
+            if (max > 0 && manager.countGeneratorsOnIsland(island) >= max) {
+                event.setCancelled(true);
+                player.sendMessage(plugin.getMessagesConfig().getMessage("generator.max-reached"));
+                return;
+            }
         }
 
         manager.startCountdown(block.getLocation(), player.getUniqueId());
@@ -93,7 +96,7 @@ public class GeneratorListener implements Listener {
 
         Player player = event.getPlayer();
         if (!player.hasPermission(plugin.getPermissionsConfig().getPermission("generator.break")) &&
-            !player.hasPermission(plugin.getPermissionsConfig().getPermission("generator.admin"))) {
+            manager.isNotAdmin(player)) {
             event.setCancelled(true);
             player.sendMessage(plugin.getMessagesConfig().getMessage("general.no-permission"));
             return;

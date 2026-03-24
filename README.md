@@ -156,7 +156,7 @@ crops:
 ### Config (`generator/config.yml`)
 
 ```yaml
-countdown: 15
+countdown: "15s"
 max-per-island: 1
 
 hologram:

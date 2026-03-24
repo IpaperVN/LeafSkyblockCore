@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @SuppressWarnings({"SameReturnValue", "unused"})
@@ -78,7 +79,7 @@ public class GeneratorCommand implements CommandNode {
 
     @Override
     public @Nullable List<String> tabComplete(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (args.length == 1 && "give".startsWith(args[0].toLowerCase())) return List.of("give");
+        if (args.length == 1 && "give".startsWith(args[0].toLowerCase(Locale.ROOT))) return List.of("give");
         if (args.length == 2 && args[0].equalsIgnoreCase("give")) return null;
         return List.of();
     }

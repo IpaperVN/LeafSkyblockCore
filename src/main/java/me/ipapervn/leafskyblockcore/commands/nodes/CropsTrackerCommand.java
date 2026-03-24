@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @SuppressWarnings({"SameReturnValue", "unused"})
@@ -41,7 +42,7 @@ public class CropsTrackerCommand implements CommandNode {
             return true;
         }
 
-        String subCommand = args[0].toLowerCase();
+        String subCommand = args[0].toLowerCase(Locale.ROOT);
 
         return switch (subCommand) {
             case "check" -> handleCheck(sender, args);
@@ -169,7 +170,7 @@ public class CropsTrackerCommand implements CommandNode {
     public @Nullable List<String> tabComplete(@NotNull CommandSender sender, @NotNull String[] args) {
         if (args.length == 1) {
             List<String> suggestions = new ArrayList<>();
-            String input = args[0].toLowerCase();
+            String input = args[0].toLowerCase(Locale.ROOT);
             for (String sub : List.of("check", "set", "add", "reset", "reload")) {
                 if (sub.startsWith(input)) {
                     suggestions.add(sub);

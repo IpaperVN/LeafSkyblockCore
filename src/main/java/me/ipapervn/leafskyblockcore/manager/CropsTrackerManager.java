@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ public class CropsTrackerManager {
         this.database = database;
         loadConfig();
         initializeDatabase();
-        loadAllPoints();
+        plugin.getServer().getAsyncScheduler().runNow(plugin, task -> loadAllPoints());
     }
 
     private void initializeDatabase() {
@@ -91,7 +92,7 @@ public class CropsTrackerManager {
         if (cropsSection != null) {
             for (String key : cropsSection.getKeys(false)) {
                 try {
-                    Material material = Material.valueOf(key.toUpperCase());
+                    Material material = Material.valueOf(key.toUpperCase(Locale.ROOT));
                     int points = cropsSection.getInt(key);
                     cropsPoints.put(material, points);
                 } catch (IllegalArgumentException e) {

@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/.idea/LeafSkyblockCore.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/amazonq.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/CropsTrackerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/CropsTrackerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/GeneratorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/GeneratorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/database/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/gui/GeneratorGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/gui/GeneratorGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/GeneratorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/listeners/GeneratorListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/CropsTrackerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/CropsTrackerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/GeneratorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/manager/GeneratorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,18 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "IpaperVN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IpaperVN&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/IpaperVN/LeafSkyblockCore.git",
-    "accountId": "649b8871-21d3-4240-bc6c-404f68fa0ea5"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IpaperVN/LeafSkyblockCore.git&quot;,
+    &quot;accountId&quot;: &quot;0e01dbd9-3340-4d56-af79-f6f36e57c486&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -38,21 +57,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.LeafSkyblockCore [clean].executor": "Run",
-    "Maven.LeafSkyblockCore [package].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.LeafSkyblockCore [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LeafSkyblockCore [package].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;amazonq.codewhisperer&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mcdev-temp-root" />
@@ -64,8 +88,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
       </set>
     </attachedChunks>
   </component>
@@ -79,6 +103,11 @@
       <workItem from="1773317956019" duration="5355000" />
       <workItem from="1773396307197" duration="7313000" />
       <workItem from="1773716732566" duration="18036000" />
+      <workItem from="1774255630406" duration="482000" />
+      <workItem from="1774256169511" duration="2728000" />
+      <workItem from="1774266478188" duration="2745000" />
+      <workItem from="1774349444058" duration="320000" />
+      <workItem from="1774350696692" duration="2095000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -105,5 +134,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

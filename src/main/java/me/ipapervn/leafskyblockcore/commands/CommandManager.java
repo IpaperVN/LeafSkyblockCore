@@ -14,32 +14,29 @@ public class CommandManager {
 
     private final LeafSkyblockCore plugin;
     private final Map<String, CommandNode> nodes = new HashMap<>();
-    private MessagesConfig messages;
+    private final MessagesConfig messages;
 
     public CommandManager(@NotNull LeafSkyblockCore plugin) {
         this.plugin = plugin;
+        this.messages = plugin.getMessagesConfig();
     }
 
     public void registerNode(@NotNull CommandNode node) {
-        nodes.put(node.getName().toLowerCase(), node);
-        plugin.getComponentLogger().info(Component.text("Registered command node: " + node.getName()));
+        nodes.put(node.getName().toLowerCase(Locale.ROOT), node);
+        plugin.getComponentLogger().info("Registered command node: {}", node.getName());
     }
 
     public void unregisterNode(@NotNull String nodeName) {
-        nodes.remove(nodeName.toLowerCase());
+        nodes.remove(nodeName.toLowerCase(Locale.ROOT));
     }
 
     public boolean handleCommand(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (messages == null) {
-            messages = plugin.getMessagesConfig();
-        }
-        
         if (args.length == 0) {
             sendHelp(sender);
             return true;
         }
 
-        String nodeName = args[0].toLowerCase();
+        String nodeName = args[0].toLowerCase(Locale.ROOT);
         CommandNode node = nodes.get(nodeName);
 
         if (node == null) {
@@ -61,12 +58,12 @@ public class CommandManager {
     public List<String> handleTabComplete(@NotNull CommandSender sender, @NotNull String[] args) {
         if (args.length == 1) {
             List<String> suggestions = new ArrayList<>();
-            String input = args[0].toLowerCase();
+            String input = args[0].toLowerCase(Locale.ROOT);
             
             for (CommandNode node : nodes.values()) {
                 String permission = node.getPermission();
                 if (permission == null || sender.hasPermission(permission)) {
-                    if (node.getName().toLowerCase().startsWith(input)) {
+                    if (node.getName().toLowerCase(Locale.ROOT).startsWith(input)) {
                         suggestions.add(node.getName());
                     }
                 }
@@ -76,7 +73,7 @@ public class CommandManager {
         }
 
         if (args.length > 1) {
-            String nodeName = args[0].toLowerCase();
+            String nodeName = args[0].toLowerCase(Locale.ROOT);
             CommandNode node = nodes.get(nodeName);
 
             if (node != null) {

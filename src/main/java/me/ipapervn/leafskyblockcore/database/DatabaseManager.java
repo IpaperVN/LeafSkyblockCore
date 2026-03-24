@@ -50,8 +50,9 @@ public class DatabaseManager {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:sqlite:" + databaseFile.getAbsolutePath());
         config.setDriverClassName("org.sqlite.JDBC");
-        config.setMaximumPoolSize(10);
-        config.setMinimumIdle(2);
+        // SQLite is file-based and only supports 1 concurrent writer; keep pool small
+        config.setMaximumPoolSize(2);
+        config.setMinimumIdle(1);
         config.setMaxLifetime(1800000);
         config.setConnectionTimeout(30000);
         config.setPoolName("LeafSkyblockCore-Pool");
@@ -96,11 +97,16 @@ public class DatabaseManager {
 
     /**
      * Create table if not exists.
+     * tableName and schema must be hardcoded — never pass user input.
      *
-     * @param tableName Table name
-     * @param schema Table schema (columns definition)
+     * @param tableName Table name (hardcoded only)
+     * @param schema Table schema (hardcoded only)
      */
     public void createTable(@NotNull String tableName, @NotNull String schema) {
+        if (!tableName.matches("[a-zA-Z0-9_]+")) {
+            plugin.getComponentLogger().error("Invalid table name '{}' — only alphanumeric and underscore allowed", tableName);
+            return;
+        }
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (" + schema + ")";
         execute(sql);
         plugin.getComponentLogger().info("Table '{}' initialized", tableName);

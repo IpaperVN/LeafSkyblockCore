@@ -8,6 +8,10 @@ import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
 
 public class LeafPlaceholderExpansion extends PlaceholderExpansion {
 
@@ -20,84 +24,62 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
     }
 
     @Override
-    public @NotNull String getIdentifier() {
-        return "leafskyblockcore";
-    }
+    public @NotNull String getIdentifier() { return "leafskyblockcore"; }
 
     @Override
-    public @NotNull String getAuthor() {
-        return plugin.getPluginMeta().getAuthors().toString();
-    }
+    public @NotNull String getAuthor() { return plugin.getPluginMeta().getAuthors().toString(); }
 
     @Override
-    public @NotNull String getVersion() {
-        return plugin.getPluginMeta().getVersion();
-    }
+    public @NotNull String getVersion() { return plugin.getPluginMeta().getVersion(); }
 
     @Override
-    public boolean persist() {
-        return true;
-    }
+    public boolean persist() { return true; }
 
     @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
-        if (player == null) {
-            return null;
-        }
+        if (player == null) return null;
 
-        // %leafskyblockcore_crops_points%
-        if (params.equalsIgnoreCase("crops_points")) {
-            return String.valueOf(cropsTrackerManager.getPoints(player.getUniqueId()));
-        }
+        String p = params.toLowerCase(Locale.ROOT);
 
-        // %leafskyblockcore_crops_rank%
-        if (params.equalsIgnoreCase("crops_rank")) {
-            int rank = cropsTrackerManager.getPlayerRank(player.getUniqueId());
-            return rank == -1 ? "N/A" : String.valueOf(rank);
-        }
-
-        // %leafskyblockcore_crops_top_<number>_name%
-        if (params.startsWith("crops_top_") && params.endsWith("_name")) {
-            try {
-                String[] parts = params.split("_");
-                int position = Integer.parseInt(parts[2]);
-                return getTopPlayerName(position);
-            } catch (Exception e) {
-                return "N/A";
-            }
-        }
-
-        // %leafskyblockcore_crops_top_<number>_points%
-        if (params.startsWith("crops_top_") && params.endsWith("_points")) {
-            try {
-                String[] parts = params.split("_");
-                int position = Integer.parseInt(parts[2]);
-                return getTopPlayerPoints(position);
-            } catch (Exception e) {
-                return "0";
-            }
-        }
+        if (p.equals("crops_points")) return String.valueOf(cropsTrackerManager.getPoints(player.getUniqueId()));
+        if (p.equals("crops_rank")) return resolveRank(player);
+        if (p.startsWith("crops_top_") && p.endsWith("_name")) return resolveTopName(p);
+        if (p.startsWith("crops_top_") && p.endsWith("_points")) return resolveTopPoints(p);
 
         return null;
     }
 
-    private String getTopPlayerName(int position) {
-        java.util.List<java.util.Map.Entry<java.util.UUID, java.lang.Long>> top = cropsTrackerManager.getTopPlayers(position);
-        if (position <= 0 || position > top.size()) {
-            return "N/A";
-        }
-        
-        java.util.UUID uuid = top.get(position - 1).getKey();
-        OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
+    private String resolveRank(@NotNull OfflinePlayer player) {
+        int rank = cropsTrackerManager.getPlayerRank(player.getUniqueId());
+        return rank == -1 ? "N/A" : String.valueOf(rank);
+    }
+
+    private @Nullable String resolveTopName(@NotNull String params) {
+        int position = parseTopPosition(params);
+        if (position < 0) return "N/A";
+        List<Map.Entry<UUID, Long>> top = cropsTrackerManager.getTopPlayers(position);
+        if (position > top.size()) return "N/A";
+        OfflinePlayer player = Bukkit.getOfflinePlayer(top.get(position - 1).getKey());
         return player.getName() != null ? player.getName() : "Unknown";
     }
 
-    private String getTopPlayerPoints(int position) {
-        java.util.List<java.util.Map.Entry<java.util.UUID, java.lang.Long>> top = cropsTrackerManager.getTopPlayers(position);
-        if (position <= 0 || position > top.size()) {
-            return "0";
-        }
-        
+    private @NotNull String resolveTopPoints(@NotNull String params) {
+        int position = parseTopPosition(params);
+        if (position < 0) return "0";
+        List<Map.Entry<UUID, Long>> top = cropsTrackerManager.getTopPlayers(position);
+        if (position > top.size()) return "0";
         return String.valueOf(top.get(position - 1).getValue());
+    }
+
+    /** Parses position from "crops_top_X_name" or "crops_top_X_points". Returns -1 on failure. */
+    private int parseTopPosition(@NotNull String params) {
+        String[] parts = params.split("_");
+        if (parts.length < 3) return -1;
+        try {
+            int pos = Integer.parseInt(parts[2]);
+            return pos > 0 ? pos : -1;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 }

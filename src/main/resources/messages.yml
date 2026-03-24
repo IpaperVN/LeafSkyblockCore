@@ -21,14 +21,15 @@ generator:
   not-own-island: "<red>You can only place generators on your own island!"
   give-success: "<green>Gave <yellow>{amount}x Generator</yellow> to <yellow>{player}</yellow>!"
   max-reached: "<red>You have reached the maximum number of generators on this island!"
+  collected: "<green>Collected <yellow>{amount}</yellow> items from the generator!"
 
 reload:
   all: "<green>Reloaded all configs!"
   generator: "<green>Reloaded generator config!"
 
 usage:
-  crops-tracker-check: "<red>Usage: /lc cropstracker check <player>"
-  crops-tracker-set: "<red>Usage: /lc cropstracker set <player> <points>"
-  crops-tracker-add: "<red>Usage: /lc cropstracker add <player> <points>"
-  crops-tracker-reset: "<red>Usage: /lc cropstracker reset <player>"
-  generator-give: "<red>Usage: /lc generator give <player> [amount]"
+  crops-tracker-check: "<red>Usage: /lc cropstracker check \<player>"
+  crops-tracker-set: "<red>Usage: /lc cropstracker set \<player> \<points>"
+  crops-tracker-add: "<red>Usage: /lc cropstracker add \<player> \<points>"
+  crops-tracker-reset: "<red>Usage: /lc cropstracker reset \<player>"
+  generator-give: "<red>Usage: /lc generator give \<player> [amount]"
