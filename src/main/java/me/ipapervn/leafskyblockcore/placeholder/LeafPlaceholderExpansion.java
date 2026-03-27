@@ -44,7 +44,7 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
         return switch (p) {
             case "crops_points" -> String.valueOf(cropsTrackerManager.getPoints(player.getUniqueId()));
             case "crops_rank"   -> resolveRank(player);
-            case "season"       -> cropsTrackerManager.getSeasonManager().getCurrentSeason();
+            case "season"       -> cropsTrackerManager.getSeasonManager().getCurrentSeasonDisplay();
             default -> {
                 if (p.startsWith("crops_top_") && p.endsWith("_name"))   yield resolveTopName(p);
                 if (p.startsWith("crops_top_") && p.endsWith("_points")) yield resolveTopPoints(p);

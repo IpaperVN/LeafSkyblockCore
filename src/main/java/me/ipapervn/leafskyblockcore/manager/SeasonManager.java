@@ -73,6 +73,14 @@ public class SeasonManager {
         return seasonOrder.get(currentSeasonIndex);
     }
 
+    /** Returns the display name of the current season (MiniMessage format). */
+    @NotNull
+    public String getCurrentSeasonDisplay() {
+        tick();
+        String key = seasonOrder.get(currentSeasonIndex);
+        return cropsConfig.getString("seasons." + key + ".display", key);
+    }
+
     /** Returns true if the crop is allowed to score in the current season. */
     public boolean isAllowed(@NotNull Material material) {
         if (!cropsConfig.getBoolean("seasons.enabled", true)) return true;

@@ -109,7 +109,7 @@ leafskyblockcore.reload                # Reload configs
 | `%leafskyblockcore_crops_rank%` | Hạng của bạn |
 | `%leafskyblockcore_crops_top_X_name%` | Tên người chơi top X (1-10) |
 | `%leafskyblockcore_crops_top_X_points%` | Điểm người chơi top X (1-10) |
-| `%leafskyblockcore_season%` | Mùa hiện tại (SPRING, SUMMER, AUTUMN, WINTER) |
+| `%leafskyblockcore_season%` | Tên hiển thị mùa hiện tại (hỗ trợ MiniMessage) |
 
 ---
 
@@ -150,12 +150,16 @@ seasons:
   duration: "30m"
   order: [SPRING, SUMMER, AUTUMN, WINTER]
   SPRING:
+    display: "<green>Mùa Xuân"
     crops: [WHEAT, CARROTS, POTATOES]
   SUMMER:
+    display: "<yellow>Mùa Hè"
     crops: [MELON, PUMPKIN, SWEET_BERRY_BUSH]
   AUTUMN:
+    display: "<gold>Mùa Thu"
     crops: [BEETROOTS, NETHER_WART, COCOA]
   WINTER:
+    display: "<aqua>Mùa Đông"
     crops: []
 ```
 

@@ -90,9 +90,13 @@ public class CropsTrackerManager {
         config.set("seasons.enabled", true);
         config.set("seasons.duration", "30m");
         config.set("seasons.order", List.of("SPRING", "SUMMER", "AUTUMN", "WINTER"));
+        config.set("seasons.SPRING.display", "<green>Mùa Xuân");
         config.set("seasons.SPRING.crops", List.of("WHEAT", "CARROTS", "POTATOES"));
+        config.set("seasons.SUMMER.display", "<yellow>Mùa Hè");
         config.set("seasons.SUMMER.crops", List.of("MELON", "PUMPKIN", "SWEET_BERRY_BUSH"));
+        config.set("seasons.AUTUMN.display", "<gold>Mùa Thu");
         config.set("seasons.AUTUMN.crops", List.of("BEETROOTS", "NETHER_WART", "COCOA"));
+        config.set("seasons.WINTER.display", "<aqua>Mùa Đông");
         config.set("seasons.WINTER.crops", List.of());
         saveConfig();
     }
