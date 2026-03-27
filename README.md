@@ -6,15 +6,16 @@
 
 ## 📋 Tổng Quan
 
-LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, generator block tự động sinh vật phẩm với hologram đếm ngược và GUI quản lý.
+LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, hệ thống mùa màng, generator block tự động sinh vật phẩm với hologram đếm ngược và GUI quản lý.
 
 ### ✨ Tính Năng Chính
 
 - 🌾 **Crops Tracker** - Theo dõi điểm khi thu hoạch nông sản
+- 🍂 **Season Farming** - Hệ thống mùa màng, chỉ tính điểm nông sản đúng mùa
 - ⚙️ **Generator** - Block tự động sinh vật phẩm theo chu kỳ, hologram đếm ngược
 - 🖥️ **Generator GUI** - Chuột phải vào generator để xem thông tin và nhận vật phẩm
 - 🏝️ **Tích hợp SuperiorSkyblock2** - Chỉ tính điểm và đặt generator trong đảo của bạn
-- 📊 **PlaceholderAPI Support** - Hiển thị điểm trên scoreboard, tab, chat
+- 📊 **PlaceholderAPI Support** - Hiển thị điểm, mùa trên scoreboard, tab, chat
 - 💾 **SQLite Database** - Lưu trữ dữ liệu an toàn với HikariCP
 - 🎨 **MiniMessage Format** - Hỗ trợ màu sắc, gradient, hover, click events
 
@@ -108,6 +109,7 @@ leafskyblockcore.reload                # Reload configs
 | `%leafskyblockcore_crops_rank%` | Hạng của bạn |
 | `%leafskyblockcore_crops_top_X_name%` | Tên người chơi top X (1-10) |
 | `%leafskyblockcore_crops_top_X_points%` | Điểm người chơi top X (1-10) |
+| `%leafskyblockcore_season%` | Mùa hiện tại (SPRING, SUMMER, AUTUMN, WINTER) |
 
 ---
 
@@ -118,6 +120,7 @@ plugins/LeafSkyblockCore/
 ├── data.db
 ├── messages.yml
 ├── permissions.yml
+├── seasons-state.yml
 ├── crops-tracker/
 │   └── config.yml
 └── generator/
@@ -141,6 +144,19 @@ crops:
   COCOA: 2
   MELON: 1
   PUMPKIN: 1
+
+seasons:
+  enabled: true
+  duration: "30m"
+  order: [SPRING, SUMMER, AUTUMN, WINTER]
+  SPRING:
+    crops: [WHEAT, CARROTS, POTATOES]
+  SUMMER:
+    crops: [MELON, PUMPKIN, SWEET_BERRY_BUSH]
+  AUTUMN:
+    crops: [BEETROOTS, NETHER_WART, COCOA]
+  WINTER:
+    crops: []
 ```
 
 ### Cách Hoạt Động
@@ -148,6 +164,35 @@ crops:
 - Chỉ tính khi nông sản **chín hoàn toàn**
 - Chỉ tính khi đứng trong **đảo của bạn**
 - Không tính fortune drops (1 lần mỗi block)
+- Chỉ tính điểm nông sản **đúng mùa** — sai mùa thu hoạch bình thường nhưng không được điểm
+
+---
+
+## 🍂 Season Farming
+
+### Cách Hoạt Động
+
+- Mùa tự động đổi sau mỗi `duration` (mặc định 30 phút)
+- Mỗi mùa chỉ tính điểm cho các nông sản được cấu hình trong `seasons.<TÊN_MÙA>.crops`
+- `WINTER` mặc định không có crop nào → không tính điểm mùa đông
+- Trạng thái mùa được lưu vào `seasons-state.yml` — **restart server không mất mùa**, thời gian tiếp tục đếm
+
+### Duration Format
+
+| Format | Ví dụ | Kết quả |
+|--------|-------|---------|
+| Giây | `30s` | 30 giây |
+| Phút | `5m` | 5 phút |
+| Giờ | `1h` | 1 giờ |
+
+### Tắt Season Farming
+
+```yaml
+seasons:
+  enabled: false
+```
+
+Khi `enabled: false`, tất cả nông sản trong `crops` đều được tính điểm bình thường.
 
 ---
 
@@ -161,14 +206,15 @@ max-per-island: 1
 
 hologram:
   lines:
-    counting: "&e⏳ &6{seconds}s"
+    counting: "<yellow>⏳ <gold>{seconds}s"
+    stored: "<gray>Stored: <yellow>{stored}"
 
 item:
   material: END_PORTAL_FRAME
-  name: "&6⚙ Generator"
+  name: "<gold>⚙ Generator"
   lore:
-    - "&7Đặt xuống để kích hoạt"
-    - "&7Đếm ngược: &e{countdown}s"
+    - "<gray>Đặt xuống để kích hoạt"
+    - "<gray>Đếm ngược: <yellow>{countdown}s"
   custom-model-data: 0
 
 output:
@@ -178,9 +224,9 @@ output:
   lore: []
 
 gui:
-  title: "&8⚙ Generator"
+  title: "<dark_gray>⚙ Generator"
   size: 27
-  status-counting: "&e⏳ Counting down"
+  status-counting: "<yellow>⏳ Counting down"
   background:
     material: GRAY_STAINED_GLASS_PANE
     name: " "
@@ -188,20 +234,26 @@ gui:
     info:
       slot: 11
       material: END_PORTAL_FRAME
-      name: "&6⚙ Generator"
+      name: "<gold>⚙ Generator"
       lore:
-        - "&7Status: {status}"
-        - "&7Time left: &e{seconds}s"
-        - "&7Placed by: &e{player}"
+        - "<gray>Status: {status}"
+        - "<gray>Time left: <yellow>{seconds}s"
+        - "<gray>Placed by: <yellow>{player}"
     collect:
       slot: 15
       material: CHEST
-      name: "&aCollect Items"
+      name: "<green>Collect Items"
       lore:
-        - "&7Stored: &e{stored} items"
-        - "&7Click to collect!"
+        - "<gray>Stored: <yellow>{stored} items"
+        - "<gray>Click to collect!"
       action: collect
 ```
+
+> **Lưu ý:** Config dùng **MiniMessage format**. Hologram lines dùng **legacy `&` format** (DecentHolograms).
+
+### Countdown Format
+
+Giống Season duration: `15s`, `5m`, `1h`.
 
 ### Placeholders trong GUI
 
@@ -246,6 +298,7 @@ generator:
   not-own-island: "<red>You can only place generators on your own island!"
   give-success: "<green>Gave <yellow>{amount}x Generator</yellow> to <yellow>{player}</yellow>!"
   max-reached: "<red>You have reached the maximum number of generators!"
+  collected: "<green>Collected <yellow>{amount}</yellow> items from the generator!"
 
 reload:
   all: "<green>Reloaded all configs!"
@@ -260,6 +313,7 @@ reload:
 - Kiểm tra nông sản đã chín chưa
 - Kiểm tra đang đứng trong đảo của mình
 - Kiểm tra SuperiorSkyblock2 đã cài chưa
+- Kiểm tra nông sản có trong danh sách mùa hiện tại không (`%leafskyblockcore_season%`)
 
 **Generator không hoạt động?**
 - Kiểm tra DecentHolograms đã cài chưa
@@ -273,10 +327,17 @@ reload:
 **Placeholder không hoạt động?**
 - Cài PlaceholderAPI
 - Test: `/papi parse me %leafskyblockcore_crops_points%`
+- Test mùa: `/papi parse me %leafskyblockcore_season%`
 
 ---
 
 ## 📝 Changelog
+
+### Version 1.2
+- ✨ Season Farming — hệ thống mùa màng, mỗi mùa chỉ tính điểm nông sản được cấu hình
+- ✨ Placeholder `%leafskyblockcore_season%`
+- ✨ Persist trạng thái mùa qua restart (`seasons-state.yml`)
+- ✨ Duration format `15s`, `5m`, `1h` cho cả season và generator countdown
 
 ### Version 1.1
 - ✨ Generator GUI với live update
