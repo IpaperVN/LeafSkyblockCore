@@ -48,6 +48,7 @@ public class ReloadCommand implements CommandNode {
     private boolean reloadAll(@NotNull CommandSender sender) {
         plugin.getMessagesConfig().reload();
         plugin.getPermissionsConfig().reload();
+        plugin.getMotdConfig().reload();
         plugin.getCropsTrackerManager().reload();
         plugin.getGeneratorManager().reload();
         sender.sendMessage(messages.getMessage("reload.all"));

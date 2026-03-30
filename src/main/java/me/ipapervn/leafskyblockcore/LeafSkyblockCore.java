@@ -3,11 +3,13 @@ package me.ipapervn.leafskyblockcore;
 import me.ipapervn.leafskyblockcore.commands.CommandLoader;
 import me.ipapervn.leafskyblockcore.commands.CommandManager;
 import me.ipapervn.leafskyblockcore.config.MessagesConfig;
+import me.ipapervn.leafskyblockcore.config.MotdConfig;
 import me.ipapervn.leafskyblockcore.config.PermissionsConfig;
 import me.ipapervn.leafskyblockcore.database.DatabaseManager;
 import me.ipapervn.leafskyblockcore.listeners.CropsTrackerListener;
 import me.ipapervn.leafskyblockcore.listeners.GeneratorGuiListener;
 import me.ipapervn.leafskyblockcore.listeners.GeneratorListener;
+import me.ipapervn.leafskyblockcore.listeners.MotdListener;
 import me.ipapervn.leafskyblockcore.manager.CropsTrackerManager;
 import me.ipapervn.leafskyblockcore.manager.GeneratorManager;
 import me.ipapervn.leafskyblockcore.placeholder.LeafPlaceholderExpansion;
@@ -28,11 +30,13 @@ public final class LeafSkyblockCore extends JavaPlugin {
     private GeneratorManager generatorManager;
     private MessagesConfig messagesConfig;
     private PermissionsConfig permissionsConfig;
+    private MotdConfig motdConfig;
 
     @Override
     public void onEnable() {
         messagesConfig = new MessagesConfig(this);
         permissionsConfig = new PermissionsConfig(this);
+        motdConfig = new MotdConfig(this);
         databaseManager = new DatabaseManager(this);
         cropsTrackerManager = new CropsTrackerManager(this, databaseManager);
         generatorManager = new GeneratorManager(this);
@@ -43,6 +47,7 @@ public final class LeafSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CropsTrackerListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GeneratorListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GeneratorGuiListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new MotdListener(motdConfig), this);
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new LeafPlaceholderExpansion(this).register();
@@ -76,4 +81,5 @@ public final class LeafSkyblockCore extends JavaPlugin {
     public GeneratorManager getGeneratorManager() { return generatorManager; }
     public MessagesConfig getMessagesConfig() { return messagesConfig; }
     public PermissionsConfig getPermissionsConfig() { return permissionsConfig; }
+    public MotdConfig getMotdConfig() { return motdConfig; }
 }
