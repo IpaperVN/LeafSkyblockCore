@@ -1,12 +1,12 @@
 # 🍃 LeafSkyblockCore
 
-> **Plugin core cho server Skyblock với hệ thống tracking nông sản và generator**
+> **Plugin core cho server Skyblock với hệ thống tracking nông sản, generator và custom MOTD**
 
 ---
 
 ## 📋 Tổng Quan
 
-LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, hệ thống mùa màng, generator block tự động sinh vật phẩm với hologram đếm ngược và GUI quản lý.
+LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server Skyblock, cung cấp hệ thống theo dõi điểm nông sản tự động, hệ thống mùa màng, generator block tự động sinh vật phẩm với hologram đếm ngược, GUI quản lý và custom MOTD.
 
 ### ✨ Tính Năng Chính
 
@@ -14,6 +14,7 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 - 🍂 **Season Farming** - Hệ thống mùa màng, chỉ tính điểm nông sản đúng mùa
 - ⚙️ **Generator** - Block tự động sinh vật phẩm theo chu kỳ, hologram đếm ngược
 - 🖥️ **Generator GUI** - Chuột phải vào generator để xem thông tin và nhận vật phẩm
+- 📡 **Custom MOTD** - Tùy chỉnh MOTD server list, hỗ trợ MiniMessage gradient, hex color
 - 🏝️ **Tích hợp SuperiorSkyblock2** - Chỉ tính điểm và đặt generator trong đảo của bạn
 - 📊 **PlaceholderAPI Support** - Hiển thị điểm, mùa trên scoreboard, tab, chat
 - 💾 **SQLite Database** - Lưu trữ dữ liệu an toàn với HikariCP
@@ -120,6 +121,7 @@ plugins/LeafSkyblockCore/
 ├── data.db
 ├── messages.yml
 ├── permissions.yml
+├── motd.yml
 ├── seasons-state.yml
 ├── crops-tracker/
 │   └── config.yml
@@ -197,6 +199,25 @@ seasons:
 ```
 
 Khi `enabled: false`, tất cả nông sản trong `crops` đều được tính điểm bình thường.
+
+---
+
+## 📡 Custom MOTD
+
+### Config (`motd.yml`)
+
+```yaml
+enabled: true
+line1: "<gradient:green:aqua><bold>LeafSkyblock</bold></gradient> <gray>| 1.21"
+line2: "<yellow>✦ <white>Chào mừng bạn đến với server! <yellow>✦"
+```
+
+### Cách Hoạt Động
+
+- Hỗ trợ đầy đủ **MiniMessage format** — gradient, hex color (`<#ff6600>`), bold, italic, v.v.
+- 2 dòng MOTD độc lập, mỗi dòng config riêng
+- `enabled: false` để tắt, server dùng MOTD mặc định từ `server.properties`
+- `/lc reload` reload MOTD ngay lập tức, không cần restart
 
 ---
 
@@ -336,6 +357,10 @@ reload:
 ---
 
 ## 📝 Changelog
+
+### Version 1.3
+- ✨ Custom MOTD — hỗ trợ MiniMessage gradient, hex color, 2 dòng config riêng
+- ✨ Tên hiển thị mùa có màu sắc (`seasons.<MÙA>.display`)
 
 ### Version 1.2
 - ✨ Season Farming — hệ thống mùa màng, mỗi mùa chỉ tính điểm nông sản được cấu hình
