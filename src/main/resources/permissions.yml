@@ -19,3 +19,8 @@ generator:
 
 reload:
   use: "leafskyblockcore.reload"
+
+mobcoins:
+  give: "leafskyblockcore.mobcoins.give"
+  take: "leafskyblockcore.mobcoins.take"
+  reset: "leafskyblockcore.mobcoins.reset"

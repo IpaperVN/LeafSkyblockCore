@@ -1,6 +1,6 @@
 # 🍃 LeafSkyblockCore
 
-> **Plugin core cho server Skyblock với hệ thống tracking nông sản, generator và custom MOTD**
+> **Plugin core cho server Skyblock với hệ thống tracking nông sản, generator, MobCoins và custom MOTD**
 
 ---
 
@@ -15,8 +15,9 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 - ⚙️ **Generator** - Block tự động sinh vật phẩm theo chu kỳ, hologram đếm ngược
 - 🖥️ **Generator GUI** - Chuột phải vào generator để xem thông tin và nhận vật phẩm
 - 📡 **Custom MOTD** - Tùy chỉnh MOTD server list, hỗ trợ MiniMessage gradient, hex color
+- 🪙 **MobCoins** - Hệ thống tiền tệ, quản lý qua command, tên hiển thị config được
 - 🏝️ **Tích hợp SuperiorSkyblock2** - Chỉ tính điểm và đặt generator trong đảo của bạn
-- 📊 **PlaceholderAPI Support** - Hiển thị điểm, mùa trên scoreboard, tab, chat
+- 📊 **PlaceholderAPI Support** - Hiển thị điểm, mùa, mobcoins trên scoreboard, tab, chat
 - 💾 **SQLite Database** - Lưu trữ dữ liệu an toàn với HikariCP
 - 🎨 **MiniMessage Format** - Hỗ trợ màu sắc, gradient, hover, click events
 
@@ -69,6 +70,18 @@ LeafSkyblockCore là plugin core được thiết kế đặc biệt cho server 
 | `/lc reload` | Reload tất cả configs | `leafskyblockcore.reload` |
 | `/lc reload generator` | Reload generator config | `leafskyblockcore.reload` |
 
+### 🪙 MobCoins
+
+| Command | Mô tả | Permission |
+|---------|-------|------------|
+| `/mcoins` | Xem số coins của bạn | - |
+| `/mcoins give <player> <amount>` | Cho coins | `leafskyblockcore.mobcoins.give` |
+| `/mcoins take <player> <amount>` | Lấy coins | `leafskyblockcore.mobcoins.take` |
+| `/mcoins add <player> <amount>` | Thêm coins (alias give) | `leafskyblockcore.mobcoins.give` |
+| `/mcoins reset <player>` | Reset coins | `leafskyblockcore.mobcoins.reset` |
+
+**Aliases:** `/mcoins`, `/mobcoins`
+
 **Aliases:** `/lc`, `/leaf`, `/leafcore`, `/leafskyblockcore`
 
 ---
@@ -94,6 +107,14 @@ leafskyblockcore.generator.admin       # Bypass mọi check
 leafskyblockcore.generator.give        # Cho item generator (Admin)
 ```
 
+### MobCoins
+
+```yaml
+leafskyblockcore.mobcoins.give         # Cho/thêm coins (Admin)
+leafskyblockcore.mobcoins.take         # Lấy coins (Admin)
+leafskyblockcore.mobcoins.reset        # Reset coins (Admin)
+```
+
 ### Reload
 
 ```yaml
@@ -107,10 +128,14 @@ leafskyblockcore.reload                # Reload configs
 | Placeholder | Mô tả |
 |-------------|-------|
 | `%leafskyblockcore_crops_points%` | Điểm nông sản của bạn |
+| `%leafskyblockcore_crops_points_formatted%` | Điểm nông sản (1K, 1M, 1B) |
 | `%leafskyblockcore_crops_rank%` | Hạng của bạn |
 | `%leafskyblockcore_crops_top_X_name%` | Tên người chơi top X (1-10) |
 | `%leafskyblockcore_crops_top_X_points%` | Điểm người chơi top X (1-10) |
+| `%leafskyblockcore_crops_top_X_points_formatted%` | Điểm top X (1K, 1M, 1B) |
 | `%leafskyblockcore_season%` | Tên hiển thị mùa hiện tại (hỗ trợ MiniMessage) |
+| `%leafskyblockcore_mobcoins%` | Số MobCoins của bạn |
+| `%leafskyblockcore_mobcoins_formatted%` | Số MobCoins (1K, 1M, 1B) |
 
 ---
 
@@ -122,6 +147,7 @@ plugins/LeafSkyblockCore/
 ├── messages.yml
 ├── permissions.yml
 ├── motd.yml
+├── mobcoins.yml
 ├── seasons-state.yml
 ├── crops-tracker/
 │   └── config.yml
@@ -199,6 +225,38 @@ seasons:
 ```
 
 Khi `enabled: false`, tất cả nông sản trong `crops` đều được tính điểm bình thường.
+
+---
+
+## 🪙 MobCoins
+
+### Config (`mobcoins.yml`)
+
+```yaml
+display-name: "MobCoins"
+```
+
+### Messages
+
+```yaml
+mobcoins:
+  your-coins: "<yellow>{name}: <gold>{coins} <gray>({coins_formatted})"
+  give-success: "<green>Gave <yellow>{amount} {name}</yellow> to <yellow>{player}</yellow>!"
+  take-success: "<green>Took <yellow>{amount} {name}</yellow> from <yellow>{player}</yellow>!"
+  reset-success: "<green>Reset <yellow>{player}</yellow>'s {name}!"
+  received: "<green>+<yellow>{amount} {name} <gray>(Total: {coins})"
+  taken: "<red>-<yellow>{amount} {name} <gray>(Total: {coins})"
+```
+
+### Placeholders trong Messages
+
+| Placeholder | Mô tả |
+|-------------|-------|
+| `{name}` | Tên hiển thị từ config |
+| `{coins}` | Số coins hiện tại |
+| `{coins_formatted}` | Số coins dạng 1K, 1M, 1B |
+| `{amount}` | Số coins được give/take |
+| `{player}` | Tên player |
 
 ---
 
@@ -349,6 +407,10 @@ reload:
 - Chuột phải vào đúng block generator
 - Kiểm tra `gui.size` là bội số của 9
 
+**MobCoins không hoạt động?**
+- Kiểm tra permission `leafskyblockcore.mobcoins.give`
+- Test placeholder: `/papi parse me %leafskyblockcore_mobcoins%`
+
 **Placeholder không hoạt động?**
 - Cài PlaceholderAPI
 - Test: `/papi parse me %leafskyblockcore_crops_points%`
@@ -357,6 +419,11 @@ reload:
 ---
 
 ## 📝 Changelog
+
+### Version 1.4
+- ✨ MobCoins — hệ thống tiền tệ, command `/mcoins`, tên hiển thị config được
+- ✨ Placeholder `%leafskyblockcore_mobcoins%` và `%leafskyblockcore_mobcoins_formatted%`
+- ✨ Placeholder formatted cho crops points và top points
 
 ### Version 1.3
 - ✨ Custom MOTD — hỗ trợ MiniMessage gradient, hex color, 2 dòng config riêng

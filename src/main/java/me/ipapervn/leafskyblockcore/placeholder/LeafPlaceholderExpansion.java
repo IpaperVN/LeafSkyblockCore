@@ -3,6 +3,7 @@ package me.ipapervn.leafskyblockcore.placeholder;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.ipapervn.leafskyblockcore.LeafSkyblockCore;
 import me.ipapervn.leafskyblockcore.manager.CropsTrackerManager;
+import me.ipapervn.leafskyblockcore.util.FormatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -42,12 +43,16 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
         String p = params.toLowerCase(Locale.ROOT);
 
         return switch (p) {
-            case "crops_points" -> String.valueOf(cropsTrackerManager.getPoints(player.getUniqueId()));
-            case "crops_rank"   -> resolveRank(player);
-            case "season"       -> cropsTrackerManager.getSeasonManager().getCurrentSeasonDisplay();
+            case "crops_points"           -> String.valueOf(cropsTrackerManager.getPoints(player.getUniqueId()));
+            case "crops_points_formatted" -> formatPoints(cropsTrackerManager.getPoints(player.getUniqueId()));
+            case "crops_rank"             -> resolveRank(player);
+            case "season"                 -> cropsTrackerManager.getSeasonManager().getCurrentSeasonDisplay();
+            case "mobcoins"               -> String.valueOf(plugin.getMobCoinsManager().getCoins(player.getUniqueId()));
+            case "mobcoins_formatted"     -> formatPoints(plugin.getMobCoinsManager().getCoins(player.getUniqueId()));
             default -> {
-                if (p.startsWith("crops_top_") && p.endsWith("_name"))   yield resolveTopName(p);
-                if (p.startsWith("crops_top_") && p.endsWith("_points")) yield resolveTopPoints(p);
+                if (p.startsWith("crops_top_") && p.endsWith("_points_formatted")) yield resolveTopPointsFormatted(p);
+                if (p.startsWith("crops_top_") && p.endsWith("_name"))             yield resolveTopName(p);
+                if (p.startsWith("crops_top_") && p.endsWith("_points"))           yield resolveTopPoints(p);
                 yield null;
             }
         };
@@ -73,6 +78,18 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
         List<Map.Entry<UUID, Long>> top = cropsTrackerManager.getTopPlayers(position);
         if (position > top.size()) return "0";
         return String.valueOf(top.get(position - 1).getValue());
+    }
+
+    private @NotNull String resolveTopPointsFormatted(@NotNull String params) {
+        int position = parseTopPosition(params);
+        if (position < 0) return "0";
+        List<Map.Entry<UUID, Long>> top = cropsTrackerManager.getTopPlayers(position);
+        if (position > top.size()) return "0";
+        return formatPoints(top.get(position - 1).getValue());
+    }
+
+    private static @NotNull String formatPoints(long value) {
+        return FormatUtil.formatNumber(value);
     }
 
     /** Parses position from "crops_top_X_name" or "crops_top_X_points". Returns -1 on failure. */

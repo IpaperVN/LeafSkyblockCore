@@ -1,5 +1,5 @@
 name: LeafSkyblockCore
-version: '1.1'
+version: '1.3'
 main: me.ipapervn.leafskyblockcore.LeafSkyblockCore
 api-version: '1.21'
 authors: [ipapervn]
@@ -8,4 +8,8 @@ commands:
   leafskyblockcore:
     description: Main command for LeafSkyblockCore
     aliases: [lc, leafcore, leaf, leafskyblockcore]
+    usage: /<command> [args]
+  mcoins:
+    description: MobCoins command
+    aliases: [mobcoins]
     usage: /<command> [args]

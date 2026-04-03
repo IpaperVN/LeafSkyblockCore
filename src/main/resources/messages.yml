@@ -27,6 +27,14 @@ reload:
   all: "<green>Reloaded all configs!"
   generator: "<green>Reloaded generator config!"
 
+mobcoins:
+  your-coins: "<yellow>{name}: <gold>{coins} <gray>({coins_formatted})"
+  give-success: "<green>Gave <yellow>{amount} {name}</yellow> to <yellow>{player}</yellow>!"
+  take-success: "<green>Took <yellow>{amount} {name}</yellow> from <yellow>{player}</yellow>!"
+  reset-success: "<green>Reset <yellow>{player}</yellow>'s {name}!"
+  received: "<green>+<yellow>{amount} {name} <gray>(Total: {coins})"
+  taken: "<red>-<yellow>{amount} {name} <gray>(Total: {coins})"
+
 usage:
   crops-tracker-check: "<red>Usage: /lc cropstracker check \<player>"
   crops-tracker-set: "<red>Usage: /lc cropstracker set \<player> \<points>"

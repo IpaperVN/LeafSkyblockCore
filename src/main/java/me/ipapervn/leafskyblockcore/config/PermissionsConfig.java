@@ -32,6 +32,9 @@ public class PermissionsConfig extends BaseConfig {
         target.set("generator.admin", "leafskyblockcore.generator.admin");
         target.set("generator.give", "leafskyblockcore.generator.give");
         target.set("reload.use", "leafskyblockcore.reload");
+        target.set("mobcoins.give", "leafskyblockcore.mobcoins.give");
+        target.set("mobcoins.take", "leafskyblockcore.mobcoins.take");
+        target.set("mobcoins.reset", "leafskyblockcore.mobcoins.reset");
     }
 
     private void loadPermissions() {

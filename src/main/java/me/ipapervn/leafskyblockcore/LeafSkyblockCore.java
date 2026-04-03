@@ -2,6 +2,7 @@ package me.ipapervn.leafskyblockcore;
 
 import me.ipapervn.leafskyblockcore.commands.CommandLoader;
 import me.ipapervn.leafskyblockcore.commands.CommandManager;
+import me.ipapervn.leafskyblockcore.commands.MobCoinsCommand;
 import me.ipapervn.leafskyblockcore.config.MessagesConfig;
 import me.ipapervn.leafskyblockcore.config.MotdConfig;
 import me.ipapervn.leafskyblockcore.config.PermissionsConfig;
@@ -12,6 +13,7 @@ import me.ipapervn.leafskyblockcore.listeners.GeneratorListener;
 import me.ipapervn.leafskyblockcore.listeners.MotdListener;
 import me.ipapervn.leafskyblockcore.manager.CropsTrackerManager;
 import me.ipapervn.leafskyblockcore.manager.GeneratorManager;
+import me.ipapervn.leafskyblockcore.manager.MobCoinsManager;
 import me.ipapervn.leafskyblockcore.placeholder.LeafPlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -31,12 +33,14 @@ public final class LeafSkyblockCore extends JavaPlugin {
     private MessagesConfig messagesConfig;
     private PermissionsConfig permissionsConfig;
     private MotdConfig motdConfig;
+    private MobCoinsManager mobCoinsManager;
 
     @Override
     public void onEnable() {
         messagesConfig = new MessagesConfig(this);
         permissionsConfig = new PermissionsConfig(this);
         motdConfig = new MotdConfig(this);
+        mobCoinsManager = new MobCoinsManager(this, databaseManager);
         databaseManager = new DatabaseManager(this);
         cropsTrackerManager = new CropsTrackerManager(this, databaseManager);
         generatorManager = new GeneratorManager(this);
@@ -48,6 +52,13 @@ public final class LeafSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new GeneratorListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GeneratorGuiListener(this), this);
         Bukkit.getPluginManager().registerEvents(new MotdListener(motdConfig), this);
+
+        MobCoinsCommand mobCoinsCmd = new MobCoinsCommand(this);
+        var cmd = getCommand("mcoins");
+        if (cmd != null) {
+            cmd.setExecutor(mobCoinsCmd);
+            cmd.setTabCompleter(mobCoinsCmd);
+        }
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new LeafPlaceholderExpansion(this).register();
@@ -82,4 +93,5 @@ public final class LeafSkyblockCore extends JavaPlugin {
     public MessagesConfig getMessagesConfig() { return messagesConfig; }
     public PermissionsConfig getPermissionsConfig() { return permissionsConfig; }
     public MotdConfig getMotdConfig() { return motdConfig; }
+    public MobCoinsManager getMobCoinsManager() { return mobCoinsManager; }
 }

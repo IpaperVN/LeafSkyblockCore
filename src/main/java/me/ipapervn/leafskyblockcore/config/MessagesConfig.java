@@ -49,6 +49,17 @@ public class MessagesConfig extends BaseConfig {
 
         target.set("reload.all", "<green>Reloaded all configs!");
         target.set("reload.generator", "<green>Reloaded generator config!");
+
+        target.set("mobcoins.your-coins", "<yellow>{name}: <gold>{coins} <gray>({coins_formatted})");
+        target.set("mobcoins.give-success", "<green>Gave <yellow>{amount} {name}</yellow> to <yellow>{player}</yellow>!");
+        target.set("mobcoins.take-success", "<green>Took <yellow>{amount} {name}</yellow> from <yellow>{player}</yellow>!");
+        target.set("mobcoins.reset-success", "<green>Reset <yellow>{player}</yellow>'s {name}!");
+        target.set("mobcoins.received", "<green>+<yellow>{amount} {name} <gray>(Total: {coins})");
+        target.set("mobcoins.taken", "<red>-<yellow>{amount} {name} <gray>(Total: {coins})");
+
+        target.set("usage.mobcoins-give", "<red>Usage: /mcoins give \\<player> \\<amount>");
+        target.set("usage.mobcoins-take", "<red>Usage: /mcoins take \\<player> \\<amount>");
+        target.set("usage.mobcoins-reset", "<red>Usage: /mcoins reset \\<player>");
     }
 
     private void loadMessages() {
