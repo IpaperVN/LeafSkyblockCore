@@ -3,6 +3,7 @@ package me.ipapervn.leafskyblockcore.placeholder;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.ipapervn.leafskyblockcore.LeafSkyblockCore;
 import me.ipapervn.leafskyblockcore.manager.CropsTrackerManager;
+import me.ipapervn.leafskyblockcore.manager.TimeFrameManager;
 import me.ipapervn.leafskyblockcore.util.FormatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -19,9 +20,12 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
     private final LeafSkyblockCore plugin;
     private final CropsTrackerManager cropsTrackerManager;
 
+    private final TimeFrameManager timeFrameManager;
+
     public LeafPlaceholderExpansion(@NotNull LeafSkyblockCore plugin) {
         this.plugin = plugin;
         this.cropsTrackerManager = plugin.getCropsTrackerManager();
+        this.timeFrameManager = plugin.getTimeFrameManager();
     }
 
     @Override
@@ -49,6 +53,8 @@ public class LeafPlaceholderExpansion extends PlaceholderExpansion {
             case "season"                 -> cropsTrackerManager.getSeasonManager().getCurrentSeasonDisplay();
             case "mobcoins"               -> String.valueOf(plugin.getMobCoinsManager().getCoins(player.getUniqueId()));
             case "mobcoins_formatted"     -> formatPoints(plugin.getMobCoinsManager().getCoins(player.getUniqueId()));
+            case "timeframe_active" -> String.valueOf(timeFrameManager.isActive());
+            case "timeframe_status" -> timeFrameManager.getStatusDisplay();
             default -> {
                 if (p.startsWith("crops_top_") && p.endsWith("_points_formatted")) yield resolveTopPointsFormatted(p);
                 if (p.startsWith("crops_top_") && p.endsWith("_name"))             yield resolveTopName(p);

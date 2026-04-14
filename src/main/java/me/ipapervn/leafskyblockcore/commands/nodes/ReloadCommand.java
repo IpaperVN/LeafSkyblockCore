@@ -51,6 +51,8 @@ public class ReloadCommand implements CommandNode {
         plugin.getMotdConfig().reload();
         plugin.getCropsTrackerManager().reload();
         plugin.getGeneratorManager().reload();
+        plugin.getTimeFrameManager().reload();
+        plugin.getMiningManager().reload();
         sender.sendMessage(messages.getMessage("reload.all"));
         return true;
     }

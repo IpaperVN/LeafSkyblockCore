@@ -50,6 +50,8 @@ public class MessagesConfig extends BaseConfig {
         target.set("reload.all", "<green>Reloaded all configs!");
         target.set("reload.generator", "<green>Reloaded generator config!");
 
+        target.set("mining.not-enough-power", "<red>Bạn cần Breaking Power <yellow>{required} <red>để đào block này! <gray>(Hiện tại: {current})");
+
         target.set("mobcoins.your-coins", "<yellow>{name}: <gold>{coins} <gray>({coins_formatted})");
         target.set("mobcoins.give-success", "<green>Gave <yellow>{amount} {name}</yellow> to <yellow>{player}</yellow>!");
         target.set("mobcoins.take-success", "<green>Took <yellow>{amount} {name}</yellow> from <yellow>{player}</yellow>!");

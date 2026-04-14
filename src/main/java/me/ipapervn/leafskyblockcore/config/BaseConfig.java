@@ -1,9 +1,9 @@
 package me.ipapervn.leafskyblockcore.config;
 
-import me.ipapervn.leafskyblockcore.LeafSkyblockCore;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -13,11 +13,11 @@ import java.util.Map;
 
 public abstract class BaseConfig {
 
-    protected final LeafSkyblockCore plugin;
+    protected final JavaPlugin plugin;
     protected File file;
     protected FileConfiguration config;
 
-    protected BaseConfig(@NotNull LeafSkyblockCore plugin) {
+    protected BaseConfig(@NotNull JavaPlugin plugin) {
         this.plugin = plugin;
     }
 

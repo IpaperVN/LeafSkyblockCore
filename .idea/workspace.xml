@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="update config motd&#10;update README.md">
+    <list default="true" id="2c6368b4-28dc-42e5-b96f-1da8ecf53ab6" name="Changes" comment="mobcoins">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/LeafSkyblockCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/commands/nodes/ReloadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/BaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/BaseConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/MessagesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/config/PermissionsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/ipapervn/leafskyblockcore/placeholder/LeafPlaceholderExpansion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/permissions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/permissions.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +60,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/Coding/LeafSkyblockCore",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -104,7 +107,11 @@
       <workItem from="1774873581127" duration="59000" />
       <workItem from="1774873653099" duration="3591000" />
       <workItem from="1775056096156" duration="605000" />
-      <workItem from="1775246275097" duration="1303000" />
+      <workItem from="1775246275097" duration="1415000" />
+      <workItem from="1775287988198" duration="1239000" />
+      <workItem from="1775448242073" duration="2000" />
+      <workItem from="1775565193383" duration="97000" />
+      <workItem from="1776159943289" duration="10846000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -170,11 +177,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774885627400</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="mobcoins">
+      <option name="closed" value="true" />
+      <created>1775251053085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775251053085</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:net.kyori:adventure-api" />
+    <option featureType="dependencySupport" implementationName="java:io.papermc.paper:paper-api" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
@@ -183,7 +202,8 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="update config &#10;update README.md" />
     <MESSAGE value="update config motd&#10;update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="update config motd&#10;update README.md" />
+    <MESSAGE value="mobcoins" />
+    <option name="LAST_COMMIT_MESSAGE" value="mobcoins" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
